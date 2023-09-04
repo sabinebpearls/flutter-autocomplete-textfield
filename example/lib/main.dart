@@ -61,6 +61,7 @@ class _FirstPageState extends State<FirstPage> {
 
   _FirstPageState() {
     textField = SimpleAutoCompleteTextField(
+      heightOfItem: 36,
       key: key,
       decoration: InputDecoration(errorText: "Beans"),
       controller: TextEditingController(text: "Starting Text"),
@@ -135,7 +136,7 @@ class _FirstPageState extends State<FirstPage> {
 
     return Scaffold(
       appBar:
-          AppBar(title: Text('AutoComplete TextField Demo Simple'), actions: [
+      AppBar(title: Text('AutoComplete TextField Demo Simple'), actions: [
         IconButton(
             icon: Icon(Icons.edit),
             onPressed: () => showDialog(
@@ -216,7 +217,7 @@ class _SecondPageState extends State<SecondPage> {
   ];
 
   GlobalKey<AutoCompleteTextFieldState<ArbitrarySuggestionType>> key =
-      GlobalKey<AutoCompleteTextFieldState<ArbitrarySuggestionType>>();
+  GlobalKey<AutoCompleteTextFieldState<ArbitrarySuggestionType>>();
 
   AutoCompleteTextField<ArbitrarySuggestionType>? textField;
 
@@ -224,6 +225,7 @@ class _SecondPageState extends State<SecondPage> {
 
   _SecondPageState() {
     textField = AutoCompleteTextField<ArbitrarySuggestionType>(
+      heightOfItem: 36,
       decoration: InputDecoration(
           hintText: "Search Resturant:", suffixIcon: Icon(Icons.search)),
       itemSubmitted: (item) => setState(() => selected = item),
@@ -237,8 +239,8 @@ class _SecondPageState extends State<SecondPage> {
       itemSorter: (a, b) => a.stars == b.stars
           ? 0
           : a.stars > b.stars
-              ? -1
-              : 1,
+          ? -1
+          : 1,
       itemFilter: (suggestion, input) =>
           suggestion.name.toLowerCase().startsWith(input.toLowerCase()),
     );
@@ -258,14 +260,14 @@ class _SecondPageState extends State<SecondPage> {
             child: Card(
                 child: selected != null
                     ? Column(children: [
-                        ListTile(
-                            title: Text(selected!.name),
-                            trailing: Text("Rating: ${selected!.stars}/5")),
-                        Container(
-                            child: Image(image: NetworkImage(selected!.imgURL)),
-                            width: 400.0,
-                            height: 300.0)
-                      ])
+                  ListTile(
+                      title: Text(selected!.name),
+                      trailing: Text("Rating: ${selected!.stars}/5")),
+                  Container(
+                      child: Image(image: NetworkImage(selected!.imgURL)),
+                      width: 400.0,
+                      height: 300.0)
+                ])
                     : Icon(Icons.cancel))),
       ]),
     );
